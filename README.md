@@ -47,3 +47,49 @@ return (
 ### Pick your TypeScript engine
 
 Ctrl + P --> Select TypeScript Version.
+
+
+### Optimizing Fonts
+
+## There are two ways of optimizing fonts
+
+1. Is to use `next/font/google`
+2. Is to use `next/font/local`
+
+ - When using `next/font/local` we have to host/list fonts within `layout.tsx` file, other way, application does not "see" the font files inside of folder.
+
+ - For the `next/font/google` tutorials advices to create a `fonts.ts` file withing `ui` folder and paste there `imports` and **fonts**. Like this:
+
+ ```TypeScript
+ import { Inter, Lusitana } from 'next/font/google';
+ 
+export const inter = Inter({ subsets: ['latin'] });
+
+export const lusitana = Lusitana({ subsets: ['latin'], weight: ['400', '700'] });
+
+ ```
+Afterwards it could be used on `<body>` element with back ticks, after importing the `fonts.ts` to the `layout.tsx`:
+
+```HTML 
+<body className={ `${lusitana.className} 'antialiased'`} >{children}</body>
+```
+
+**IMPORTANT**
+
+When hosting web fonts from a folder (`fonts`), then it is important to use the ***fontName***`.variable` on the `<HTML>` element in the `layout.tsx` and not the  ***fontName***`.className`. Because in this way, the application thinks, that the variables are not defined, even if they are in the `tailwind.config.ts` Example below:
+
+```TypeScript
+  return (
+    /**This is the CORRECT one */
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    </html>
+  );
+
+    return (
+    /**This is the WRONG one */
+    <html lang="en" className={`${geistSans.className} ${geistMono.className}`}>
+    </html>
+  );
+
+```
+With the **correct** implementation, we are now able to use `tailwind css` utility variables/classes (`--font-sans`).
