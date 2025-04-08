@@ -93,3 +93,15 @@ When hosting web fonts from a folder (`fonts`), then it is important to use the 
 
 ```
 With the **correct** implementation, we are now able to use `tailwind css` utility variables/classes (`--font-sans`).
+
+## Images
+
+ - `Next.js` hast an <Image/> component, which is automatically optimizes static images we have in our application to prevent [Cumulative Layout Shift](https://vercel.com/blog/how-core-web-vitals-affect-seo).
+
+ - Images should have 4 ***Required*** Props: `src`, `width`, `height` and `alt`.
+
+
+## Routes
+
+ - Folders structure is a representation of the routes in `Next.js`. For example `app --> dashboard` will lead to the following URL: `https://dashboard` and so on. This is how you can create different pages in Next.js: create a new route segment using a folder, and add a `page.tsx` file inside it.
+ - Each folder could have a shared layout with its all sub URLs by creating `layout.tsx` file in it.
