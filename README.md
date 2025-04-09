@@ -105,3 +105,13 @@ With the **correct** implementation, we are now able to use `tailwind css` utili
 
  - Folders structure is a representation of the routes in `Next.js`. For example `app --> dashboard` will lead to the following URL: `https://dashboard` and so on. This is how you can create different pages in Next.js: create a new route segment using a folder, and add a `page.tsx` file inside it.
  - Each folder could have a shared layout with its all sub URLs by creating `layout.tsx` file in it.
+
+
+## Icons in this Project
+
+ - This Project uses [Heroicons](https://heroicons.com/).
+
+
+## Conditional class name applying
+
+ - `clsx` library allows us apply `css` classes depending on conditions.
