@@ -115,3 +115,45 @@ With the **correct** implementation, we are now able to use `tailwind css` utili
 ## Conditional class name applying
 
  - `clsx` library allows us apply `css` classes depending on conditions.
+
+
+ ## Waterfall requests vs Parallel requests
+
+  - Using JavaScript we are able to control how and when our requests are proceed:
+
+    1. Waterfall
+    ```JavaScript
+      const revenue = await fetchRevenue()
+      const latestInvoices = await fetchLatestInvoices()
+      const cardData = await fetchCardData()
+    ```
+    2. Parallel
+    ```JavaScript
+        const data = await Promise.all([
+      invoiceCountPromise,
+      customerCountPromise,
+      invoiceStatusPromise,
+    ]);
+    ```
+Both of Methods have their own advantages and disadvantages.
+
+## Importing and creating variables
+
+ - What I've found out today that we can import several `functions` from a single file in a **single** `import` statement. For example:
+
+```JavaScript
+import {
+  fetchRevenue,
+  fetchLatestInvoices,
+  fetchCardData,
+} from '@/app/lib/data';
+```
+
+and not
+```JavaScript
+import { fetchRevenue } from '@/app/lib/data';
+import { fetchLatestInvoices } from '@/app/lib/data';
+import { fetchCardData } from '@/app/lib/data';
+```
+ - Same story with `variables/constants`:
+
