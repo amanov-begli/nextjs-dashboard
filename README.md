@@ -99,7 +99,7 @@ With the **correct** implementation, we are now able to use `tailwind css` utili
 
 ## Images
 
-- `Next.js` hast an `<Image/>` component, which is automatically optimizes static images we have in our application to prevent [Cumulative Layout Shift](https://vercel.com/blog/how-core-web-vitals-affect-seo).
+- `Next.js` hast an `<Image/>` component, which is automatically optimizes **STATIC** images we have in our application to prevent [Cumulative Layout Shift](https://vercel.com/blog/how-core-web-vitals-affect-seo).
 
 - Images should have 4 **_Required_** Props: `src`, `width`, `height` and `alt`.
 
@@ -198,3 +198,21 @@ const cardData = await fetchCardData();
          type="customers"
        />
 ```
+
+## Had issue with routing, where page was showing up, that the "Page not found 404"
+
+Problem here was, that I've created a `page.tsx` file in the wrong place. I've placed it in `/app/ui/invoices/create/page.tsx` and of course it wasn't available at `[localhost](http://localhost:3000/dashboard/invoices/create)`. Paying a closer attention at files location and creating it at the correct place, has solved the issue.
+
+## IMPORTANT ABOUT SERVER ACTIONS
+
+By adding the 'use server', you mark all the exported functions within the file as Server Actions. These server functions can then be imported and used in Client and Server components. Any functions included in this file that are not used will be automatically removed from the final application bundle.
+
+You can also write Server Actions directly inside Server Components by adding "use server" inside the action. But for this course, we'll keep them all organized in a separate file. We recommend having a separate file for your actions.
+
+Good to know: In HTML, you'd pass a URL to the action attribute. This URL would be the destination where your form data should be submitted (usually an API endpoint).
+However, in React, the action attribute is considered a special prop - meaning React builds on top of it to allow actions to be invoked.
+Behind the scenes, Server Actions create a POST API endpoint. This is why you don't need to create API endpoints manually when using Server Actions.
+
+## Routing
+
+`revalidatePath('/dashboard/invoices');` and `redirect('/dashboard/invoices');` cool features for server actions.
